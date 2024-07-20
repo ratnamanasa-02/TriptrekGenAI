@@ -1,16 +1,13 @@
 
 import streamlit as st
 import google.generativeai as palm
-from dotenv import load_dotenv
-import os
 
-load_dotenv()
-
-api_key = os.getenv("API_KEY")
+api_key = st.secrets["API_KEY"]
 if api_key:
     palm.configure(api_key=api_key)
 else:
-    st.error("API key not found. Please set the API key in the .env file.")
+    st.error("API key not found. Please set the API key in the secrets.toml file.")
+
 
 # Define the model to use
 model_name = "models/text-bison-001"
